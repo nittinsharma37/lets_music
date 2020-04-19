@@ -46,10 +46,6 @@ class _NowPlayingState extends State<NowPlaying> {
                 height: MediaQuery.of(context).size.height /(3/2),
                 width: double.infinity,
                 color: Colors.red,
-                child: Image(
-                  image: AssetImage("assets/img/cover.jpg"),
-                  fit: BoxFit.fill,
-                ),
               ),
             ),
           ),
