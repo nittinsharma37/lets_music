@@ -1,116 +1,55 @@
 import 'package:flutter/material.dart';
 
-import 'ui/nowplaying.dart';
-import 'ui/tipcalc.dart';
-import 'utils/rotatedicon.dart';
-
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Lets Play",
+      title: "Email App",
       theme: ThemeData(
-        primaryColor: Colors.red,
-        secondaryHeaderColor: Color(0xffaadd99),
-        primarySwatch: Colors.red,
-      ),
-      home: HomePage(),
+          primarySwatch: Colors.green, accentColor: Colors.lightGreenAccent),
+      home: EmailHome(title: "Email HomePage"),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
+class EmailHome extends StatelessWidget {
+  final String title;
 
-class _HomePageState extends State<HomePage> {
+  final messages = const[
+    "My First message",
+    "My second message",
+    "My third message",
+    "My Fourth message",
+    "My Fifth message",
+
+  ];
+
+  EmailHome({
+    this.title
+});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
-      resizeToAvoidBottomPadding: true,
       appBar: AppBar(
-        backgroundColor: Colors.redAccent,
-        title: Text("Lets Play"),
-        actions: <Widget>[
-          IconButton(
-            icon: RotatedIcon(),
-            onPressed: () {
-              print("Search button pressed");
-            },
-          ),
-        ],
+        title: Text("rhr"),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              MaterialButton(
-                onPressed: () {
-                  print("Now playing pressed");
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => NowPlaying()));
-                },
-                elevation: 10.0,
-                highlightColor: Colors.green,
-                hoverColor: Colors.black,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(
-                      Icons.play_arrow,
-                      color: Colors.white,
-                      size: 30.0,
-                    ),
-                    Text(
-                      "Now Playing",
-                      style: TextStyle(color: Colors.white, fontSize: 30.0),
-                    ),
-                  ],
-                ),
-                color: Colors.red,
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              MaterialButton(
-                onPressed: () {
-                 print("Tip calculator pressed");
-                 Navigator.push(context,
-                  MaterialPageRoute(builder: (context) =>TipCalculator()));
-                },
-                elevation: 10.0,
-                highlightColor: Colors.green,
-                hoverColor: Colors.black,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(
-                      Icons.monetization_on,
-                      color: Colors.white,
-                      size: 25.0,
-                    ),
-                    Text(
-                      "Tip Calculator",
-                      style: TextStyle(color: Colors.white, fontSize: 28.0),
-                    ),
-                  ],
-                ),
-                color: Colors.red,
-              ),
-            ],
-          ),
-        ],
+      body: ListView.separated(
+        separatorBuilder: (context, index) => Divider(),
+        itemCount: messages.length,
+        itemBuilder: (BuildContext context, int index) {
+          var title = messages[index];
+          return ListTile(
+            title: Text(title),
+            isThreeLine: true,
+            leading: CircleAvatar(
+              child: Text("EA"),
+            ),
+            subtitle: Text(
+                "another text which is ver ver long and everyone can read it see it."),
+          );
+        },
       ),
     );
   }
